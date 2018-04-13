@@ -289,6 +289,8 @@ export function createElement(type, config, children) {
 }
 
 /**
+ * 返回一个方法，根据传入的type来生成元素
+ * 相当于返回了一个type参数已经固定的createElement方法
  * Return a function that produces ReactElements of a given type.
  * See https://reactjs.org/docs/react-api.html#createfactory
  */
@@ -318,6 +320,7 @@ export function cloneAndReplaceKey(oldElement, newKey) {
 }
 
 /**
+ * 克隆并返回一个新元素作为起点(可用于改变children的props)
  * Clone and return a new ReactElement using element as the starting point.
  * See https://reactjs.org/docs/react-api.html#cloneelement
  */
@@ -350,6 +353,7 @@ export function cloneElement(element, config, children) {
       key = '' + config.key;
     }
 
+    // 剩下的属性用config中的字段重写
     // Remaining properties override existing props
     let defaultProps;
     if (element.type && element.type.defaultProps) {
@@ -387,6 +391,7 @@ export function cloneElement(element, config, children) {
 }
 
 /**
+ * 判断是不是react元素
  * Verifies the object is a ReactElement.
  * See https://reactjs.org/docs/react-api.html#isvalidelement
  * @param {?object} object
