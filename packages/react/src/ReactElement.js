@@ -228,6 +228,7 @@ export function createElement(type, config, children) {
     }
   }
 
+  // children参数可以是很多个(第三个参数之后都是children)，它们都会被添加到props上
   // Children can be more than one argument, and those are transferred onto
   // the newly allocated props object.
   const childrenLength = arguments.length - 2;
@@ -246,6 +247,7 @@ export function createElement(type, config, children) {
     props.children = childArray;
   }
 
+  // 处理默认属性，从defaultProps中拿出来设置给props
   // Resolve default props
   if (type && type.defaultProps) {
     const defaultProps = type.defaultProps;
@@ -261,6 +263,7 @@ export function createElement(type, config, children) {
         typeof props.$$typeof === 'undefined' ||
         props.$$typeof !== REACT_ELEMENT_TYPE
       ) {
+        // 这里与hasValidRef方法有py交易
         const displayName =
           typeof type === 'function'
             ? type.displayName || type.name || 'Unknown'
